@@ -1,0 +1,888 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.opening-scene {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 1000;
+  transition: opacity 1s ease-out;
+}
+
+.opening-scene.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.main-content {
+  opacity: 0;
+  transition: opacity 1s ease-in;
+}
+
+.main-content.visible {
+  opacity: 1;
+}
+
+.logo {
+  margin-top: 20px;
+  opacity: 0;
+  transition: opacity 1s ease-in;
+}
+
+.logo.fade-in {
+  opacity: 1;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.container {
+  width: 80%;
+  margin: auto;
+  overflow: hidden;
+}
+
+/** Header **/
+header {
+  display: flex;
+  background: #17252a;
+  color: #ffffff;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  min-height: 70px;
+  border-bottom: #66fcf1 3px solid;
+  position: fixed;
+  top: 0; 
+  left: 0; 
+  width: 100%;
+  z-index: 99; 
+}
+
+header img {
+  height: 45px;
+  width: auto;
+  margin-right: 10px; /* Add some space between the logo and the text */
+  float: left; /* Make the logo float to the left */
+}
+
+header h1 {
+  font-size: 39px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  margin-left: 0px;
+  display: inline-block; /* Make the text display inline with the logo */
+}
+
+header a {
+  color: #c5c6c7;
+  text-decoration: none;
+  font-size: 17px;
+  margin-left: 12px;
+  padding: 5px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  text-align: center;
+}
+
+header li {
+  float: left;
+  display: inline;
+  padding: 0px;
+  margin-top: 10px;
+}
+
+header #branding {
+  float: left;
+}
+
+header #branding h1 {
+  margin: 0;
+}
+
+header nav {
+  float: right;
+  margin-top: 10px;
+}
+
+header .highlight {
+  color: #66fcf1;
+}
+
+header a:hover {
+  color: #cccccc;
+  font-weight: bold;
+}
+
+.container a:hover {
+  color: #66fcf1;
+}
+
+#hamburger-menu {
+  display: none;
+}
+
+#hamburger-menu:hover {
+  color: #66fcf1;
+}
+
+.section-1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh; 
+  padding-top: 70px; 
+  margin: 0; 
+  text-align: center; 
+  color: #66fcf1; 
+  position: relative;
+  overflow: hidden;
+  background-color: black;
+}
+
+
+.section-1 video {
+  object-fit: cover;
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1; /* to send it behind other content */
+}
+
+#video-background {
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.section-1 h1{
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  margin-top: 120px;
+  text-shadow: 5px 5px 10px rgba(0, 0, 0, 1);
+  font-size:5em;
+}
+
+.section-1 h2 {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 40px;
+  margin-top: 70px;
+  margin-left: 0px;
+  float: center;
+  color: #66fcf1;
+  text-shadow: 5px 5px 10px rgba(0, 0, 0, 1);
+  padding: 0px 200px 0px 200px;
+}
+
+
+.section-2 {
+  background-color:#1f2833;
+  text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.9);
+  border: 3px solid #45a29e;
+}
+
+.section-2 h1 {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 2em;
+  margin-top: 30px;
+  color: #66fcf1;
+}
+
+.section-2 h3 {
+  color: #66fcf1;
+}
+
+.space  {
+  background-color: #45a29e;
+  color: #45a29e;
+}
+
+.section-3 {
+  padding: 60px 20px; /* Add padding for better spacing */
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: white;
+  margin-bottom: 0;
+  position: relative;
+  overflow: hidden;
+  background-color: black;
+}
+
+.section-3 video {
+  object-fit: cover;
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1; /* to send it behind other content */
+}
+
+#s15 {
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+.box {
+  width: 100%;
+  padding: 40px 60px;
+  color: white;
+  text-align: center;
+}
+
+.box p {
+  font-size: 20px;
+  margin-top: 100px;
+}
+
+/* Boxes */
+#boxes {
+  margin-top: 0px;
+}
+
+#boxes .part {
+  float: left;
+  text-align: center;
+  width: 33%;
+  padding: 50px;
+}
+
+#boxes .part img {
+  width: 100px;
+  border: #265c58 3px solid;
+}
+
+#boxes .part h3 {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  margin-top: 10px;
+}
+
+#boxes .part p {
+  font-size: 18px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  margin-top: 30px;
+}
+
+/* Sidebar */
+.page-title {
+  font-size: 40px;
+  color: #1f2833;
+}
+
+#sidebar {
+  float: right;
+  width: 20%;
+  margin-top: 134px;
+  margin-left: 2px;
+}
+
+.dark {
+  padding: 15px;
+  background: #17252a;
+  color: #ffffff;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 760px;
+}
+
+.dark2 {
+  padding: 15px;
+  background: #17252a;
+  color: #ffffff;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#main-col {
+  float: left;
+  width: 65%;
+}
+
+.centered-text {
+  color: #fff;
+  text-align: center;
+}
+
+.centered-img {
+  background-color: #45a29e;
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+
+/* Services */
+ul#services li {
+  list-style: none;
+  padding: 20px;
+  border: #cccccc solid 1px;
+  margin-bottom: 5px;
+  background: #e6e6e6;
+}
+
+/* Pricing Section Styles */
+.pricing-section {
+  padding: 200px;
+}
+
+.pricing-table {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.pricing-option {
+  border: 3px solid #66fcf1;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 10px;
+  flex: 1 1 calc(33.333% - 20px);
+  box-sizing: border-box;
+  background-color: #1f2833;
+}
+
+.pricing-option h2{
+  text-align: center;
+  color: #66fcf1;
+}
+
+.pricing-option p {
+  text-align: center;
+  
+}
+
+.pricing-option p {
+  margin-top: 50px;
+}
+
+.pricing-option ul {
+  list-style-type: none;
+  padding: 0;
+  text-align: left;
+  margin: 20px 0 0;
+}
+
+.pricing-option ul li {
+  padding: 8px 0;
+  border-bottom: 1px solid #66fcf1;
+  list-style: circle;
+  margin-left: 20px;
+}
+
+.pricing-option ul li:last-child {
+  border-bottom: none;
+}
+
+.pricing-option button {
+  background-color: #45a29e;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.pricing-option button:hover {
+  background-color: #66fcf1;
+}
+
+
+/* Image grid */
+/* Styling for the row class to ensure it takes up 100% of the container */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Center the columns in the row */
+}
+
+/* Styling for the column class to ensure even spacing and responsiveness */
+.column {
+  flex: 1 1 45%; /* Basis set to 45% to account for margins */
+  margin: 10px;
+}
+
+/* Ensuring that images inside the img-text class take up full width of their container */
+.img-text img {
+  width: 100%;
+  height: auto; /* Maintains aspect ratio of the images */
+  display: block; /* Removes bottom whitespace around images */
+  margin: 0 auto; /* Center the image */
+  padding: 20px; /* Add padding around the image */
+}
+
+/* Styling for text overlay on images */
+.img-text {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+/* Positioning h3 and h2 text within the img-text container */
+.img-text h3 {
+  position: absolute;
+  top: 8px;
+  left: 16px;
+}
+
+.img-text h2 {
+  position: absolute;
+  top: 8px;
+}
+
+/* slide show */
+/* SLIDESHOW */
+.slideshow {
+  box-sizing:border-box
+}
+
+.spaceslide {
+  font-size: 1.7rem;
+  background-color:#1f2833;
+  color: transparent;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+  padding:  20px 50px;
+  margin-top: 0;
+  text-align: center;
+  line-height: 1.2;
+  border: 3px solid#45a29e;
+}
+
+.spaceslide img{
+  text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.9);
+}
+
+#slideshow h2{
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 40px;
+  text-align: center;
+  margin-bottom: 10px;
+  float: center;
+  color: #66fcf1;
+  text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.9);
+}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+.prev {
+  left: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+
+/* footer */
+footer {
+  background-color: #17252a;
+  text-align: center;
+  padding: 1rem 0 3rem;
+  margin-top: 0rem;
+  width: 100%; /* Ensure the footer spans the full width */
+  box-sizing: border-box; /* Include padding in the element's total width and height */
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  border-top: #66fcf1 3px solid;
+}
+
+/* Social media icons styling */
+footer .socials {
+  padding: 1rem 0;
+}
+
+/* Social media links styling */
+footer .socials a {
+  color: #66fcf1;
+  margin: 0 1rem;
+  text-decoration: none; /* Remove underline from links */
+  font-size: 1.5rem; /* Increase icon size */
+}
+
+/* Hover effect for social media links */
+footer .socials a:hover {
+  color: #66fcf1;
+}
+
+/* Links section styling */
+footer .links {
+  margin-bottom: 1.4rem;
+}
+
+/* Individual link styling */
+footer .links a {
+  color: #66fcf1;
+  padding: 0.7rem 1rem;
+  text-decoration: none; /* Remove underline from links */
+  display: inline-block; /* Ensure consistent spacing */
+}
+
+/* Hover effect for links */
+footer .links a:hover {
+  color: #66fcf1;
+}
+
+/* Credit section styling */
+footer .credit {
+  font-size: 0.8rem;
+  color: gray;
+}
+
+/* Credit link styling */
+footer .credit a {
+  color: #66fcf1;
+  font-weight: 700;
+  text-decoration: none; /* Remove underline from links */
+}
+
+/* Hover effect for credit links */
+footer .credit a:hover {
+  color: blue;
+}
+
+@keyframes fadeIn {
+  to {
+      opacity: 1;
+  }
+}
+
+@keyframes logoFadeIn {
+  to {
+      opacity: 1;
+  }
+}
+
+
+/* media query */
+
+/* laptop */
+@media (max-width: 1366px) {
+  html {
+      font-size: 75%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .pricing-option {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .pricing-table {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .pricing-section {
+    padding: 20px;
+    margin: 0;
+  }
+}
+
+
+/* Tablet styles */
+@media (max-width: 768px) {
+  html {
+    font-size: 62.5%;
+  }
+  
+  #hamburger-menu {
+    display: inline-block;
+    cursor: pointer;
+    color: #fff;
+    font-size: 24px;
+}
+
+header nav ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0;
+    width: 100%;
+    background-color: #333;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 1000;
+    display: none; /* Initial state */
+}
+
+header nav ul.active {
+    display: flex;
+}
+
+header nav ul li {
+    margin: 0;
+}
+
+header nav ul li a {
+    padding: 15px 0;
+    width: 100%;
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.section-1 h1 {
+  font-size: 5rem;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  color: #66fcf1;
+}
+
+.section-1 h2 {
+  font-size: 1.8rem;
+  line-height: 1.5;
+}
+
+#boxes .part {
+  flex-basis: 100%;
+  padding: 1rem;
+  text-align: center;
+}
+
+#boxes .part img {
+  width: 70px;
+  height: auto;
+}
+
+#boxes .part p {
+  font-size: 1.5em;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.pricing-section {
+  padding: 20px;
+}
+.pricing-table {
+  flex-direction: column;
+  align-items: center;
+}
+.pricing-option {
+  width: 90%;
+  margin-right: 0;
+  margin-bottom: 20px;
+}
+
+.pricing-option h2{
+  font-size: 2em;
+}
+
+.pricing-option ul li{
+  font-size: 1.5em;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.column {
+  flex: 1;
+  margin: 10px;
+}
+
+.column img {
+  width: 100%;
+  height: auto;
+}
+
+footer .links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+footer .links a {
+  margin: 0 1rem;
+}
+
+footer .credit {
+  font-size: 1.2rem;
+  text-align: center;
+}
+}
+
+@media only screen and (max-width: 768px) {
+  .toggle-btn {
+font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      display: block;
+      margin-top: 10px;
+      margin-left: 2px;
+justify-content: center;
+box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+color: aquamarine;
+background-color: #1f2833;
+  }
+}
+
+@media only screen and (min-width: 769px) {
+  .toggle-btn {
+      display: none;
+  }
+}
+
+/*handphone */
+@media (max-width: 450px) {
+  html {
+    font-size: 55%;
+  }
+
+  .section-1 h1{
+  font-size: 5em;
+  }
+  
+  .section-1 h2 {
+    visibility: hidden;
+  }
+
+  .pricing-section {
+    padding: 10px; /* Reduced padding */
+  }
+  .pricing-table {
+    flex-direction: column;
+    align-items: center;
+  }
+  .pricing-option {
+    width: 100%;
+    margin: 10px 0; /* Adjusted margin */
+    padding: 10px; /* Reduced padding */
+  }
+  .pricing-option h2 {
+    font-size: 1.5rem; /* Adjust font size */
+  }
+  .pricing-option p {
+    font-size: 1rem; /* Adjust font size */
+    margin-top: 0;
+  }
+  .pricing-option ul li {
+    padding: 4px 0; /* Reduce padding */
+  }
+  .pricing-option button {
+    padding: 5px 10px; /* Adjust button padding */
+    font-size: 1rem; /* Adjust font size */
+  }
+
+  .row {
+    flex-direction: column;
+  }
+  .column {
+    flex: 1 1 100%; /* Make each column take up full width */
+    margin: 10px 0; /* Adjust margin for vertical spacing */
+  }
+}
