@@ -29,21 +29,21 @@ pipeline {
             }
         }
 
-    stage('Clean Existing Container') {
-        steps {
-            script {
-                bat '''
-                SET CONTAINER_ID=$(docker ps -aq -f "name=${CONTAINER_NAME}")
-                IF NOT "%CONTAINER_ID%"=="" (
-                    docker stop ${CONTAINER_NAME} || echo "No running container"
-                    docker rm ${CONTAINER_NAME} || echo "No container to remove"
-                ) ELSE (
-                    echo "No container named ${CONTAINER_NAME} found"
-                )
-                '''
-            }
-        }
-    }
+    // stage('Clean Existing Container') {
+    //     steps {
+    //         script {
+    //             bat '''
+    //             SET CONTAINER_ID=$(docker ps -aq -f "name=${CONTAINER_NAME}")
+    //             IF NOT "%CONTAINER_ID%"=="" (
+    //                 docker stop ${CONTAINER_NAME} || echo "No running container"
+    //                 docker rm ${CONTAINER_NAME} || echo "No container to remove"
+    //             ) ELSE (
+    //                 echo "No container named ${CONTAINER_NAME} found"
+    //             )
+    //             '''
+    //         }
+    //     }
+    // }
 
         stage('Run Docker Container') {
             steps {
