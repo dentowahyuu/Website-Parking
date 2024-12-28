@@ -147,7 +147,7 @@ header a:hover {
   color: #66fcf1; 
   position: relative;
   overflow: hidden;
-  background-color: black;
+  background-color: #0c312f;
 }
 
 
@@ -219,7 +219,7 @@ header a:hover {
   margin-bottom: 0;
   position: relative;
   overflow: hidden;
-  background-color: black;
+  background-color: #0c312f;
 }
 
 .section-3 video {
