@@ -2,7 +2,8 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = 'dentowahyu/parking:latest'
+        DOCKER_IMAGE = 'dentowahyu/parking'
+        DOCKER_TAG = 'latest'
         CONTAINER_NAME = 'parking'
         PORT_MAPPING = '8090:80'  // Adjust the port mapping as needed
         AUTHOR1 = "Dento Wahyu Suseno"
@@ -21,10 +22,22 @@ pipeline {
             }
         }
 
+        stage('Clean Existing Docker Image') {
+            steps {
+                script {
+                    powershell """
+                        if (docker images -q ${DOCKER_IMAGE}:${DOCKER_TAG}) {
+                            docker rmi ${DOCKER_IMAGE}:${DOCKER_TAG} -f
+                        }
+                    """
+                }
+            }
+        }
+
         stage('Build Docker Image') {
             steps {
                 script {
-                    docker.build("${DOCKER_IMAGE}", '-f Dockerfile .')
+                    docker.build("${DOCKER_IMAGE}:${DOCKER_TAG}", '-f Dockerfile .')
                 }
             }
         }
@@ -32,11 +45,14 @@ pipeline {
         stage('Clean Existing Container') {
             steps {
                 script {
-                    bat """
-                    FOR /F "tokens=*" %%i IN ('docker ps -aq -f "name=${CONTAINER_NAME}"') DO (
-                        docker stop %%i || echo "No running container"
-                        docker rm %%i || echo "No container to remove"
-                    )
+                    powershell """
+                        \$containerId = docker ps -aq -f "name=${CONTAINER_NAME}"
+                        if (\$containerId) {
+                            docker stop \$containerId
+                            docker rm \$containerId
+                        } else {
+                            echo "No existing container named ${CONTAINER_NAME} to clean."
+                        }
                     """
                 }
             }
@@ -45,7 +61,7 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 script {
-                    docker.image("${DOCKER_IMAGE}").run("-p ${PORT_MAPPING} --name ${CONTAINER_NAME}")
+                    docker.image("${DOCKER_IMAGE}:${DOCKER_TAG}").run("-p ${PORT_MAPPING} --name ${CONTAINER_NAME}")
                 }
             }
         }
