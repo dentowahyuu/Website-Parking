@@ -26,9 +26,7 @@ pipeline {
             steps {
                 script {
                     bat """
-                        if (docker images -q ${DOCKER_IMAGE}:${DOCKER_TAG}) {
-                            docker rmi ${DOCKER_IMAGE}:${DOCKER_TAG} -f
-                        }
+                            docker rmi ${DOCKER_IMAGE}:${DOCKER_TAG}  
                     """
                     docker.build("${DOCKER_IMAGE}:${DOCKER_TAG}", '-f Dockerfile .')
                 }
