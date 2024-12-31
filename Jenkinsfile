@@ -2,8 +2,9 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = 'dentowahyu/parking:latest'
+        DOCKER_IMAGE = 'dentowahyu/parking'
         CONTAINER_NAME = 'parking'
+        DOCKER_TAG      = 'latest'
         PORT_MAPPING = '8090:80'  // Adjust the port mapping as needed
         AUTHOR1 = "Dento Wahyu Suseno"
         AUTHOR2 = "Xabiant Agelta"
@@ -24,7 +25,12 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    docker.build("${DOCKER_IMAGE}", '-f Dockerfile .')
+                    powershell """
+                        if (docker images -q ${DOCKER_IMAGE}:${DOCKER_TAG}) {
+                            docker rmi ${DOCKER_IMAGE}:${DOCKER_TAG} -f
+                        }
+                    """
+                    docker.build("${DOCKER_IMAGE}:${DOCKER_TAG}", '-f Dockerfile .')
                 }
             }
         }
@@ -45,7 +51,7 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 script {
-                    docker.image("${DOCKER_IMAGE}").run("-p ${PORT_MAPPING} --name ${CONTAINER_NAME}")
+                    docker.image("${DOCKER_IMAGE}:${DOCKER_TAG}").run("-p ${PORT_MAPPING} --name ${CONTAINER_NAME}")
                 }
             }
         }
