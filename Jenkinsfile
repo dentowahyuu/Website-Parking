@@ -2,10 +2,9 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = 'dentowahyu/parking'
-        DOCKER_TAG = 'latest'
+        DOCKER_IMAGE = 'dentowahyu/parking:latest'
         CONTAINER_NAME = 'parking'
-        PORT_MAPPING = '8090:80'  // Adjust the port mapping as needed
+        PORT_MAPPING = '8090:80'
         AUTHOR1 = "Dento Wahyu Suseno"
         AUTHOR2 = "Xabiant Agelta"
     }
@@ -22,11 +21,28 @@ pipeline {
             }
         }
 
+        stage('Clean Existing Container') { // Pindahkan ke awal
+            steps {
+                script {
+                    powershell """
+                        \$containerId = docker ps -aq -f "name=${CONTAINER_NAME}"
+                        if (\$containerId) {
+                            echo "Stopping and removing container: \$containerId"
+                            docker stop \$containerId
+                            docker rm \$containerId
+                        } else {
+                            echo "No container to remove"
+                        }
+                    """
+                }
+            }
+        }
+
         stage('Clean Existing Docker Image') {
             steps {
                 script {
                     powershell """
-                        \$imageId = docker images -q ${DOCKER_IMAGE}:${DOCKER_TAG}
+                        \$imageId = docker images -q ${DOCKER_IMAGE}
                         if (\$imageId) {
                             echo "Removing existing image: \$imageId"
                             docker rmi \$imageId -f
@@ -38,27 +54,10 @@ pipeline {
             }
         }
 
-
         stage('Build Docker Image') {
             steps {
                 script {
-                    docker.build("${DOCKER_IMAGE}:${DOCKER_TAG}", '-f Dockerfile .')
-                }
-            }
-        }
-
-        stage('Clean Existing Container') {
-            steps {
-                script {
-                    powershell """
-                        \$containerId = docker ps -aq -f "name=${CONTAINER_NAME}"
-                        if (\$containerId) {
-                            docker stop \$containerId
-                            docker rm \$containerId
-                        } else {
-                            echo "No existing container named ${CONTAINER_NAME} to clean."
-                        }
-                    """
+                    docker.build("${DOCKER_IMAGE}", '-f Dockerfile .')
                 }
             }
         }
@@ -66,7 +65,7 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 script {
-                    docker.image("${DOCKER_IMAGE}:${DOCKER_TAG}").run("-p ${PORT_MAPPING} --name ${CONTAINER_NAME}")
+                    docker.image("${DOCKER_IMAGE}").run("-p ${PORT_MAPPING} --name ${CONTAINER_NAME}")
                 }
             }
         }
