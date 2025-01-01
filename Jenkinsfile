@@ -26,13 +26,18 @@ pipeline {
             steps {
                 script {
                     powershell """
-                        if (docker images -q ${DOCKER_IMAGE}:${DOCKER_TAG}) {
-                            docker rmi ${DOCKER_IMAGE}:${DOCKER_TAG} -f
+                        \$imageId = docker images -q ${DOCKER_IMAGE}:${DOCKER_TAG}
+                        if (\$imageId) {
+                            echo "Removing existing image: \$imageId"
+                            docker rmi \$imageId -f
+                        } else {
+                            echo "No existing image to remove"
                         }
                     """
                 }
             }
         }
+
 
         stage('Build Docker Image') {
             steps {
