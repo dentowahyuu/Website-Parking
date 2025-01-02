@@ -7,7 +7,9 @@ Here is a prototype for a parking application sales website focused on the POS (
 # Features 
 
 ● Secured Operation: Ensure the security of your parking system with the latest technology.
+
 ● Easy Data Access: Access parking lot history by date or property on the spot (offline).
+
 ● Simplified Task Management: Streamline gate staff operations for efficiency and ease of use.
 
 ---
