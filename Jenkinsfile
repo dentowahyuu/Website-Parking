@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKER_IMAGE = 'dentowahyu/parking:latest'
         CONTAINER_NAME = 'parking'
-        PORT_MAPPING = '8090:80'
+        PORT_MAPPING = '8020:80'
         AUTHOR1 = "Dento Wahyu Suseno"
         AUTHOR2 = "Xabiant Agelta"
     }
